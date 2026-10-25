@@ -4,7 +4,7 @@ The contract every UI change in this repo follows. Written when the repo got its
 
 ## System and profile
 - System: the house design system (`~/.agents/skills/web-ui-kronus/references/design-system.md`): classic desktop layout drawn flat, sock palette, system fonts.
-- Profile: web app (title line, toolbar, panes, status bar), one screen. One person copies a Mora Jai puzzle box from Blue Prince onto the board and reads off the shortest list of tiles to press, on a desktop beside the game or on a phone.
+- Profile: web app (title line, toolbar, panes), one screen. One person copies a Mora Jai puzzle box from Blue Prince onto the board and reads off the shortest list of tiles to press, on a desktop beside the game or on a phone.
 - Layout: from 768px the Board and Saved puzzles group boxes sit in a 360px left column and the Solution table fills the right, scrolling inside its pane; below 768px everything stacks in DOM order (board, solution, saved puzzles), so Tab order always follows the screen.
 
 ## Tokens
@@ -41,7 +41,7 @@ Every state can be reached from the page itself:
 
 ## Do
 - Reuse the components in `design-system.md` (title line, toolbar, group box, tables) before adding new ones.
-- Report results in the button that did the work ("Saved", "Replaced", "Undo delete") or in the solution pane; solver progress also goes to the status bar.
+- Report results in the button that did the work ("Saved", "Replaced", "Undo delete") or in the solution pane; the solver's state, the positions it checked and its time go in the help line under the Solution table.
 - Name buttons verb + object; keep the same name through the flow.
 
 ## Don't
