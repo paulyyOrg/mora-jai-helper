@@ -471,11 +471,10 @@ function plural(n, one, many = one + 's') {
     return `${n.toLocaleString()} ${n === 1 ? one : many}`;
 }
 
-// Status bar: what the solver is doing or last did
-function setSolverStatus(state, states = null, ms = null) {
-    $('sbState').textContent = state;
-    $('sbStates').textContent = states == null ? '' : `${plural(states, 'position')} checked`;
-    $('sbTime').textContent = ms == null ? '' : ms < 1000 ? `${ms} ms` : `${(ms / 1000).toFixed(1)} s`;
+// The Solution group box's help line: what the solver is doing or last did, how far it searched and how long it took
+function setSolverStatus(state, states, ms) {
+    const time = ms < 1000 ? `${ms} ms` : `${(ms / 1000).toFixed(1)} s`;
+    $('solHelp').textContent = `${state} · ${plural(states, 'position')} checked in ${time}`;
 }
 
 // Replace what the solution pane shows with a message (the table stays mounted, hidden)
@@ -767,7 +766,7 @@ function displaySolution(moves, finalGrid) {
     $('stepsTable').removeAttribute('aria-busy');
     const presses = plural(moves.length, 'press', 'presses');
     $('moveCount').textContent = presses;
-    setSolverStatus(`Solved in ${presses}`, solverState.statesExplored, elapsed);
+    setSolverStatus('Solved', solverState.statesExplored, elapsed);
     announce(`Solved in ${presses}.`);
 }
 
